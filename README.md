@@ -3,11 +3,12 @@ Frontend developer pre-interview repository. Please [fork][fork_from_github] thi
 
 ## Targets
 
-  1. Provide an mobile app for **User** to set an alert for a specific flight number on a particular date
-  2. The app should use a public API to get realtime data from Hong Kong Airport
+  1. Provide an mobile app for **User** to set an alert for a specific flight number on a particular date //TODO like this tutorial https://rnfirebase.io/docs/v4.3.x/auth/phone-auth
+  2. The app should use a public API to get realtime data from Hong Kong Airport, Done
   3. The app should send a push notification to user when the flight is arriving or the ETA is changed
-  4. Save the selected flight number to a frequent use list for quick access later
-  5. The app shall run on both iOS and Android devices
+     //TODO like this tutorial https://rnfirebase.io/docs/v5.x.x/notifications/android
+  4. Save the selected flight number to a frequent use list for quick access later, Done
+  5. The app shall run on both iOS and Android devices, Done (but need ios testflight provider)
 
 
 ### Requirements
@@ -26,7 +27,7 @@ Frontend developer pre-interview repository. Please [fork][fork_from_github] thi
 
 #### 4. Final Product
   * Check-in your source code with build instructions
-  * Submit an APK via any file sharing tool
+  * Submit an APK via any file sharing tool (We use https://wetransfer.com/)
 
 ## Authors
 
