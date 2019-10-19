@@ -20,6 +20,7 @@ import BottomNavigation, {
 import { DatePicker, Button, ListItem, Left, Right, Body, Icon } from 'native-base';
 import Radio from './components/outline-radio';
 import { Dropdown } from 'react-native-material-dropdown';
+import AsyncStorage from '@react-native-community/async-storage';
 
 class HomeScreen extends React.Component {
   constructor(props) {
@@ -51,8 +52,8 @@ class HomeScreen extends React.Component {
 
   handleTabPress = (newTab) => {
     switch (newTab.key) {
-      case "etalase": 
-        this.props.navigation.navigate('Etalase');
+      case "savedflight": 
+        this.props.navigation.navigate('Saved');
         break;
     }
   }
@@ -65,7 +66,7 @@ class HomeScreen extends React.Component {
       label: 'Daily Flight',
       labelStyle: '#ffffff',
       barColor: Warna.primarydark002,
-      pressColor: 'rgba(255, 255, 255, 0.16)', // warna ripple
+      pressColor: 'rgba(255, 255, 255, 0.16)',
       badgeCount: 0,
       isActive: true,
     },
@@ -77,7 +78,7 @@ class HomeScreen extends React.Component {
       labelStyle: '#bdbdbd',
       barColor: Warna.primarydark002,
       pressColor: 'rgba(255, 255, 255, 0.16)',
-      badgeCount: 2,
+      badgeCount: 2, // TODO get saved flight push notification
       isActive: false,
     },
   ];
@@ -89,7 +90,6 @@ class HomeScreen extends React.Component {
       '&lang=' + this.state.lang + '&cargo=' + this.state.isCargo)
         .then((response) => response.json())
         .then((responseJson) => {
-          console.log(responseJson);
           this.setState({ flightData: responseJson[0].list });
           this.setState({ isLoading: false });
         })
@@ -124,7 +124,6 @@ class HomeScreen extends React.Component {
       />
     );
   }
-
  
   setDate(newDate) {
     let month =  newDate.getMonth();
@@ -262,7 +261,13 @@ class HomeScreen extends React.Component {
                       Hall: {item.hall} &nbsp;&nbsp;Origin: {item.origin[0]} </Text>
                     </Body>
                     <Right>
-                      <Icon active name="save" type="AntDesign" style={{ color: '#2a2a2a' }} />
+                      <Icon active name="save" type="AntDesign" style={{ color: '#2a2a2a' }} 
+                        onPress={async () => {
+                          await AsyncStorage.setItem('@flightID', JSON.stringify(item));
+                          // TODO push more flights
+                          // TODO ripple button
+                        }}
+                      />
                     </Right>
                   </ListItem>
                 }
